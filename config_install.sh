@@ -45,6 +45,16 @@ setup_container() {
   $HOME/neovim_dev/bash/extend_bashrc.sh
 }
 
+# Check if utilities should be installed
+while getopts "u" opt; do
+  case $opt in
+    u)
+      setup_container
+      ;;
+  esac
+done
+shift $((OPTIND - 1))
+
 # Copy configs
 if [ "$1" == "" ] || [ $# -gt 1 ]; then
   echo "No config directory provided, skipping config files"
