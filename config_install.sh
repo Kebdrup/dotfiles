@@ -39,10 +39,10 @@ setup_container() {
   npm install -g tree-sitter-cli
 
   # Add git config
-  cp -v -a -r $HOME/neovim_dev/git/. $HOME/
+  cp -v -a -r $HOME/dotfiles/git/. $HOME/
 
   # Add bash configs
-  $HOME/neovim_dev/bash/extend_bashrc.sh
+  $HOME/dotfiles/bash/extend_bashrc.sh
 }
 
 # Check if utilities should be installed
