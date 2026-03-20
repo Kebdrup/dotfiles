@@ -1,7 +1,5 @@
 return {
 	"stevearc/oil.nvim",
-	---@module 'oil'
-	---@type oil.SetupOpts
 	opts = {},
 	-- Optional dependencies
 	dependencies = { { "echasnovski/mini.icons", opts = {} } },
@@ -15,9 +13,12 @@ return {
 			},
 			keymaps = {
 				["<C-h>"] = { "actions.select", opts = { horizontal = true } },
-				["<C-Enter>"] = { "actions.select", opts = { vertical = true } },
+				["<C-v>"] = { "actions.select", opts = { vertical = true } },
 				["<C-l>"] = false,
 				["<C-r>"] = "actions.refresh",
+			},
+			float = {
+				border = "rounded",
 			},
 		})
 	end,

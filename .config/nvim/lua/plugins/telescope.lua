@@ -55,7 +55,7 @@ return {
 						["<C-n>"] = "move_selection_next",
 						["<C-y>"] = "file_edit",
 						["<esc>"] = "close",
-						["<C-Enter>"] = "select_vertical",
+						["<C-v>"] = "select_vertical",
 					},
 				},
 			},
