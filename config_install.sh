@@ -38,8 +38,8 @@ setup_container() {
   echo "Installing tree-sitter-cli"
   npm install -g tree-sitter-cli
 
-  # Add git config
-  cp -v -a -r $HOME/dotfiles/git/. $HOME/
+  # Add home configs
+  cp -v -a -r $HOME/dotfiles/home/. $HOME/
 
   # Add bash configs
   $HOME/dotfiles/bash/extend_bashrc.sh
