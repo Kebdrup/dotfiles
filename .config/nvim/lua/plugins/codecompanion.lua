@@ -4,13 +4,15 @@ return {
 		strategies = {
 			chat = {
 				name = "copilot",
-				model = "claude-sonnet-4.5",
+				model = "claude-opus-4.5",
 			},
 			inline = {
 				name = "copilot",
+				model = "claude-opus-4.5",
 			},
 			agent = {
 				name = "copilot",
+				model = "claude-opus-4.5",
 			},
 		},
 		-- NOTE: The log_level is in `opts.opts`
