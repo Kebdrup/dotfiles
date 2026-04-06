@@ -38,6 +38,12 @@ setup_container() {
   echo "Installing tree-sitter-cli"
   npm install -g tree-sitter-cli
 
+  # Install opencode
+  curl -fsSL https://opencode.ai/install | bash
+
+  # Install delta diff tool
+  apt install -y git-delta
+
   # Add home configs
   cp -v -a -r $HOME/dotfiles/home/. $HOME/
 
