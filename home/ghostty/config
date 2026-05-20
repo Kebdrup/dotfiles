@@ -1,0 +1,14 @@
+window-decoration=false
+window-padding-x=5
+window-padding-y=5
+theme=purnell
+gtk-titlebar=false
+
+font-family = Anonymous Pro 
+font-size = 16
+
+font-feature = -calt
+font-feature = -dlig
+font-feature = -liga
+
+macos-option-as-alt=false
