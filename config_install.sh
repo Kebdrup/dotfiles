@@ -1,72 +1,40 @@
 #!/bin/bash
 
 nvim_install_dir="/nvim"
+current_path="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 setup_container() {
-  # Update and install dependencies
-  apt update 
-
   # Install utilities
-  apt install -y tmux git ripgrep zsh
+  apt update && apt install -y git zsh build-essential
 
   # Install oh-my-zsh
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  RUNZSH=no CHSH=yes sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-  # Install python
-  apt install -y python3 python3-venv
-
-  # Install nodejs
-  if ! command -v node -v >/dev/null 2>&1
-  then
-    apt install -y curl
-    curl -fsSL https://deb.nodesource.com/setup_22.x | bash -
-    apt install -y nodejs
-  fi
-
-  # If neovim is not installed then install it
-  if ! command -v nvim >/dev/null 2>&1
-  then
-    mkdir -p $nvim_install_dir
-    wget https://github.com/neovim/neovim/releases/download/v0.11.1/nvim-linux-arm64.appimage -O $nvim_install_dir/nvim.appimage
-    chmod u+x $nvim_install_dir/nvim.appimage
-    (cd $nvim_install_dir; ./nvim.appimage --appimage-extract)
-    ln -s $nvim_install_dir/squashfs-root/usr/bin/nvim /usr/bin/nvim && ln -s $nvim_install_dir/squashfs-root/usr/bin/nvim /usr/bin/vim
-  fi
-
-  # Depedencies for treesitter
-  apt install -y npm build-essential
-  echo "Installing tree-sitter-cli"
-  npm install -g tree-sitter-cli
-
-  # Install opencode
-  curl -fsSL https://opencode.ai/install | bash
-
-  # Install delta diff tool
-  apt install -y git-delta
+  # Install mise-en-place
+  curl https://mise.run | MISE_INSTALL_PATH=/usr/local/bin/mise sh
 
   # Add home configs
-  cp -v -a -r $HOME/dotfiles/home/. $HOME/
+  cp -v -a -r $current_path/home/. $HOME/
+
+  mise --cd ~/.config/mise/ trust 
+  mise --cd ~/.config/mise/ install 
 
   # Add bash configs
-  $HOME/dotfiles/bash/extend_bashrc.sh
+  $current_path/bash/extend_bashrc.sh
+  source ~/.bashrc
 }
 
-# Check if utilities should be installed
-while getopts "u" opt; do
-  case $opt in
-    u)
-      setup_container
-      ;;
-  esac
-done
-shift $((OPTIND - 1))
-
-# Copy configs
-if [ "$1" == "" ] || [ $# -gt 1 ]; then
-  echo "No config directory provided, skipping config files"
-else
-  config_dir="$1"
+replace_configs() {
   mkdir -p $config_dir
   echo "Using config directory: $config_dir"
-  cp -v -R ./.config/* $config_dir 
-fi
+  cp -v -R $current_path/.config/ $config_dir 
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --config|-c)  config_dir="$2"; replace_configs; shift 2 ;;
+    --init|-i)    setup_container; shift ;;
+    --help|-h)    echo "Usage: $0 [--init|-i] [--config|-c path]"; exit 0 ;;
+    -*)           echo "Error: Unknown option $1" >&2; exit 1 ;;
+  esac
+done

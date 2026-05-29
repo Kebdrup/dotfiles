@@ -1,0 +1,9 @@
+[tools]
+delta = "0.19.2"
+neovim = "0.12.2"
+node = "26.2.0"
+opencode = "latest"
+python = "3.14.5"
+ripgrep = "latest"
+tmux = "latest"
+tree-sitter = "0.26.9"
