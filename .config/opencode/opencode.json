@@ -1,7 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "model": "github-copilot/claude-opus-4.6",
-  "theme": "vesper-black",
   "small_model": "github-copilot/claude-haiku-4-5",
   "default_agent": "plan",
   "autoupdate": true,
@@ -24,7 +23,7 @@
       "name": "Alexandra AI",
       "options": {
         "baseURL": "https://inference.alexandra.dk/v1",
-        "apiKey": "{env:ALEX_API_KEY}"
+        "apiKey": "{file:./alx-key}"
       },
       "models": {
         "glm-5.3-flash": {
@@ -54,5 +53,6 @@
     "bash": {
       "*": "ask",
       "git *": "deny"
+    }
   }
 }

@@ -4,8 +4,8 @@ window-padding-y=5
 theme=purnell
 gtk-titlebar=false
 
-font-family = Anonymous Pro 
-font-size = 16
+font-family = monospace 
+font-size = 14
 
 font-feature = -calt
 font-feature = -dlig
