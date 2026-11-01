@@ -17,6 +17,8 @@ vim.opt.termguicolors = true
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.o.clipboard = "unnamedplus"
+
 vim.keymap.set("n", "]]", "<C-]>", { desc = "Jump to tag" })
 vim.keymap.set("n", "[[", "<CMD>pop<CR>", { desc = "Go back a tag" })
 vim.keymap.set("n", "<C-o>", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
