@@ -6,8 +6,8 @@ return {
 			options = {
 				icons_enabled = true,
 				theme = "auto",
-				component_separators = { left = "", right = "" },
-				section_separators = { left = "", right = "" },
+				component_separators = { left = "\xee\x82\xb1", right = "\xee\x82\xb3" },
+				section_separators = { left = "\xee\x82\xb0", right = "\xee\x82\xb2" },
 				disabled_filetypes = {
 					statusline = {},
 					winbar = {},

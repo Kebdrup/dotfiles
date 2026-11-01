@@ -8,23 +8,20 @@ vim.o.signcolumn = "yes"
 -- Blinking cursor
 vim.o.guicursor = "n-v-c-sm-i-ci-ve:block,r-cr-o:hor20,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor"
 
--- No python keymaps
-vim.g.no_python_maps = true
-
 -- Colors in terminal
 vim.opt.termguicolors = true
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+-- Copy to system clipboard
 vim.o.clipboard = "unnamedplus"
 
-vim.keymap.set("n", "]]", "<C-]>", { desc = "Jump to tag" })
-vim.keymap.set("n", "[[", "<CMD>pop<CR>", { desc = "Go back a tag" })
-vim.keymap.set("n", "<C-o>", "<CMD>Oil --float<CR>", { desc = "Open parent directory" })
-vim.keymap.set("n", "<tab>", "<CMD>nohl<CR>", { desc = "Clear highlights" })
-vim.keymap.set("n", "<C-.>", vim.lsp.buf.code_action, { desc = "Show code actions" })
-vim.keymap.set("n", "<C-,>", vim.diagnostic.open_float, { desc = "Show diagnostic float" })
-vim.keymap.set("n", "<Leader>r", vim.lsp.buf.rename, { desc = "Rename across files" })
-vim.keymap.set("n", "<Leader>k", "<C-]>", { desc = "Jump to tag" })
-vim.keymap.set("n", "<Leader>j", "<CMD>pop<CR>", { desc = "Go back a tag" })
+-- Neovim 0.12: native insert-mode autocompletion
+vim.o.autocomplete = true
+
+-- Neovim 0.12: global border for floating windows
+vim.o.winborder = "rounded"
+
+-- Assumes a Nerd Font is available
+vim.g.have_nerd_font = true
